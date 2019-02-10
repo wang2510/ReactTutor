@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { simpleAction } from '../redux/actions/simpleAction';
 
-export default class EventDemo extends React.Component {
+class EventDemo extends React.Component {
   constructor(props) {
       super();
       this.state = { count: 0 , newName: 'YangSB'};
@@ -29,12 +31,16 @@ export default class EventDemo extends React.Component {
   }
 
     render() {
+      console.log(this.props.simpleReducer.reduxName);
       let a = this.student.name;
       return (
        <div>
          This is my Name: {a}
          <div>
          This is my newName: {this.state.newName}
+         </div>
+         <div>
+         This is my reduxName: {this.props.simpleReducer.reduxName}
          </div>
          <div>
            This is a counter: {this.state.count}
@@ -44,6 +50,10 @@ export default class EventDemo extends React.Component {
           <button onClick={this.handleSubmit}> Plus </button>
          </div>
    
+         <div>
+          <button onClick={this.simpleAction}> Redux </button>
+         </div>
+
        </div>
       );
     }
@@ -57,5 +67,13 @@ export default class EventDemo extends React.Component {
 
     }
   }
+
+  const mapStateToProps = state => ({
+    ...state
+   })
   
-  
+const mapDispatchToProps = dispatch => ({
+  simpleAction: () => dispatch(simpleAction)
+ })
+
+ export default connect(mapStateToProps, mapDispatchToProps)(EventDemo);
