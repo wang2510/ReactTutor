@@ -45,13 +45,13 @@ class EventDemo extends React.Component {
          <div>
            This is a counter: {this.state.count}
          </div>
-         
+
          <div>
           <button onClick={this.handleSubmit}> Plus </button>
          </div>
-   
+
          <div>
-          <button onClick={this.simpleAction}> Redux </button>
+          <button className={'btn-primary'} onClick={this.simpleAction}> Redux </button>
          </div>
 
        </div>
@@ -71,7 +71,7 @@ class EventDemo extends React.Component {
   const mapStateToProps = state => ({
     ...state
    })
-  
+
 const mapDispatchToProps = dispatch => ({
   simpleAction: () => dispatch(simpleAction)
  })
